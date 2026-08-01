@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marlene Silva — Planeamiento Estratégico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F2E7;
+    --ink: #1C2B27;
+    --ink-soft: #2A3B36;
+    --brass: #B18A4F;
+    --brass-light: #D9BD8A;
+    --wine: #7C2F3A;
+    --sage: #6E7B6B;
+    --line: #DED2B7;
+    --paper: #FBF8F1;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:450;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{ color:inherit; }
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  :focus-visible{
+    outline:2px solid var(--brass);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,242,231,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:19px;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .brand span{ color:var(--brass); }
+  .navlinks{ display:flex; gap:36px; list-style:none; margin:0; padding:0; }
+  .navlinks a{
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink-soft);
+    position:relative;
+    padding-bottom:4px;
+  }
+  .navlinks a::after{
+    content:'';
+    position:absolute; left:0; right:0; bottom:-2px;
+    height:1px; background:var(--brass);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .navlinks a:hover::after{ transform:scaleX(1); }
+  .navtoggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:104px 0 96px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(44px, 6vw, 76px);
+    line-height:0.98;
+    margin-top:18px;
+  }
+  .hero .role{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    color:var(--sage);
+    font-size:clamp(18px, 2vw, 22px);
+    margin-top:14px;
+  }
+  .hero p.lede{
+    max-width:460px;
+    margin-top:24px;
+    color:var(--ink-soft);
+    font-size:16.5px;
+  }
+  .cta-row{ display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px;
+    border-radius:2px;
+    font-size:14.5px; font-weight:600;
+    text-decoration:none;
+    transition:all .2s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ background:var(--wine); }
+  .btn-ghost{ border-color:var(--ink); color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  .route-graphic{ width:100%; height:auto; }
+  .route-graphic path{
+    fill:none;
+    stroke:var(--brass);
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.1s ease forwards .3s;
+  }
+  .route-graphic circle{
+    opacity:0;
+    animation:fadeIn .5s ease forwards;
+  }
+  .route-graphic .p1{ animation-delay:.5s; }
+  .route-graphic .p2{ animation-delay:1.05s; }
+  .route-graphic .p3{ animation-delay:1.6s; }
+  .route-graphic .p4{ animation-delay:2.05s; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fadeIn{ to{ opacity:1; } }
+
+  /* ---------- SOBRE MI ---------- */
+  .about{
+    background:var(--ink);
+    color:var(--paper);
+    padding:110px 0;
+  }
+  .about .eyebrow{ color:var(--brass-light); }
+  .about h2{
+    color:var(--paper);
+    font-size:clamp(30px,3.4vw,42px);
+    max-width:680px;
+    margin-top:16px;
+  }
+  .about p.body-text{
+    max-width:600px;
+    margin-top:22px;
+    color:#CFD8D2;
+    font-size:16px;
+  }
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:rgba(255,255,255,0.14);
+    margin-top:64px;
+    border-top:1px solid rgba(255,255,255,0.14);
+  }
+  .pillar{
+    background:var(--ink);
+    padding:34px 30px;
+  }
+  .pillar .mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--brass);
+    font-size:15px;
+  }
+  .pillar h3{
+    color:var(--paper);
+    font-size:21px;
+    margin-top:14px;
+    font-weight:450;
+  }
+  .pillar p{
+    color:#B7C2BB;
+    font-size:14.5px;
+    margin-top:10px;
+  }
+
+  /* ---------- SERVICIOS ---------- */
+  .services{ padding:112px 0; }
+  .section-head{ max-width:600px; }
+  .section-head h2{ font-size:clamp(30px,3.4vw,42px); margin-top:16px; }
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    margin-top:56px;
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--paper);
+    padding:40px;
+    transition:background .25s ease;
+  }
+  .service-card:hover{ background:#F2ECDD; }
+  .service-card .icon{ color:var(--wine); margin-bottom:20px; }
+  .service-card h3{ font-size:20px; font-weight:450; }
+  .service-card p{ color:var(--sage); font-size:14.5px; margin-top:10px; }
+
+  /* ---------- PROCESO ---------- */
+  .process{
+    background:var(--paper);
+    padding:112px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .steps{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    margin-top:70px;
+  }
+  .steps::before{
+    content:'';
+    position:absolute;
+    top:11px; left:0; right:0;
+    height:1px;
+    background:repeating-linear-gradient(to right, var(--brass) 0 6px, transparent 6px 12px);
+  }
+  .step{ position:relative; padding-top:44px; }
+  .step::before{
+    content:'';
+    position:absolute; top:0; left:0;
+    width:23px; height:23px;
+    border-radius:50%;
+    background:var(--paper);
+    border:1.5px solid var(--brass);
+  }
+  .step .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--brass);
+    font-size:14px;
+  }
+  .step h3{ font-size:18.5px; margin-top:10px; font-weight:450; }
+  .step p{ color:var(--sage); font-size:14px; margin-top:8px; }
+
+  /* ---------- CONTACTO ---------- */
+  .contact{
+    background:var(--ink);
+    color:var(--paper);
+    padding:120px 0 80px;
+    text-align:center;
+  }
+  .contact .eyebrow{ color:var(--brass-light); }
+  .contact h2{
+    color:var(--paper);
+    font-size:clamp(32px,5vw,54px);
+    max-width:680px;
+    margin:18px auto 0;
+  }
+  .contact p.sub{ color:#B7C2BB; max-width:480px; margin:20px auto 0; font-size:15.5px; }
+  .contact .cta-row{ justify-content:center; margin-top:36px; }
+  .contact .btn-ghost{ border-color:var(--paper); color:var(--paper); }
+  .contact .btn-ghost:hover{ background:var(--paper); color:var(--ink); }
+
+  footer{
+    background:var(--ink);
+    color:#8FA097;
+    padding:26px 0 40px;
+    text-align:center;
+    font-size:13px;
+    border-top:1px solid rgba(255,255,255,0.12);
+  }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer a{ text-decoration:none; color:#B7C2BB; }
+  footer a:hover{ color:var(--brass-light); }
+
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero .route-wrap{ order:-1; max-width:280px; margin:0 auto; }
+    .navlinks{ display:none; }
+    .pillars{ grid-template-columns:1fr; }
+    .service-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr; gap:40px; }
+    .steps::before{ display:none; }
+    .step::before{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .route-graphic path, .route-graphic circle{ animation:none !important; stroke-dashoffset:0; opacity:1; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Marlene <span>Silva</span></div>
+    <ul class="navlinks">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#proceso">Enfoque</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Planeamiento Estratégico</p>
+      <h1>Marlene<br>Silva</h1>
+      <p class="role">Dirección estratégica con claridad y propósito</p>
+      <p class="lede">Acompaño a organizaciones y equipos de liderazgo a trazar una ruta estratégica clara: del diagnóstico a la ejecución, con decisiones sustentadas y una dirección compartida.</p>
+      <div class="cta-row">
+        <a href="#contacto" class="btn btn-primary">Conversemos</a>
+        <a href="#proceso" class="btn btn-ghost">Ver enfoque</a>
+      </div>
+    </div>
+    <div class="route-wrap">
+      <svg class="route-graphic" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una ruta estratégica con puntos de referencia">
+        <path d="M40,330 C110,330 90,230 170,220 C250,210 220,120 300,100 C340,90 350,60 380,40"/>
+        <circle class="p1" cx="40" cy="330" r="6" fill="#7C2F3A"/>
+        <circle class="p2" cx="170" cy="220" r="6" fill="#B18A4F"/>
+        <circle class="p3" cx="300" cy="100" r="6" fill="#B18A4F"/>
+        <circle class="p4" cx="380" cy="40" r="7" fill="#1C2B27" stroke="#B18A4F" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre-mi">
+  <div class="wrap">
+    <p class="eyebrow">Sobre mí</p>
+    <h2>La estrategia funciona cuando conecta la visión de largo plazo con las decisiones del día a día.</h2>
+    <p class="body-text">Trabajo junto a equipos directivos para ordenar prioridades, alinear a las personas alrededor de objetivos comunes y convertir el análisis en planes que realmente se ejecutan. Cada organización tiene un contexto propio: el punto de partida siempre es entenderlo a fondo.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <p class="mark">Visión</p>
+        <h3>Dirección con sentido</h3>
+        <p>Objetivos claros que conectan el propósito de la organización con decisiones concretas.</p>
+      </div>
+      <div class="pillar">
+        <p class="mark">Rigor</p>
+        <h3>Análisis sólido</h3>
+        <p>Decisiones sustentadas en información, contexto y una lectura honesta de la realidad.</p>
+      </div>
+      <div class="pillar">
+        <p class="mark">Acompañamiento</p>
+        <h3>Cercanía en la ejecución</h3>
+        <p>La estrategia se sostiene junto a los equipos, no solo se entrega en un documento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Servicios</p>
+      <h2>Áreas de trabajo</h2>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+        </div>
+        <h3>Planeamiento estratégico</h3>
+        <p>Diseño de la hoja de ruta estratégica, alineando objetivos de largo plazo con la operación diaria de la organización.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Diagnóstico organizacional</h3>
+        <p>Evaluación del contexto interno y externo para identificar oportunidades, riesgos y prioridades de acción.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </div>
+        <h3>Gestión del cambio</h3>
+        <p>Acompañamiento a líderes y equipos durante procesos de transformación estratégica y organizacional.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16"/></svg>
+        </div>
+        <h3>Facilitación de talleres</h3>
+        <p>Espacios de trabajo colaborativo para construir consenso y dar forma a la estrategia junto al equipo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Enfoque</p>
+      <h2>Un proceso en cuatro etapas</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <p class="num">01</p>
+        <h3>Diagnóstico</h3>
+        <p>Lectura del contexto interno y externo para entender el punto de partida real.</p>
+      </div>
+      <div class="step">
+        <p class="num">02</p>
+        <h3>Diseño</h3>
+        <p>Construcción de la estrategia y priorización de las decisiones clave.</p>
+      </div>
+      <div class="step">
+        <p class="num">03</p>
+        <h3>Implementación</h3>
+        <p>Puesta en marcha del plan, con foco en la ejecución y la coordinación de equipos.</p>
+      </div>
+      <div class="step">
+        <p class="num">04</p>
+        <h3>Seguimiento</h3>
+        <p>Revisión de resultados y ajuste continuo de la ruta estratégica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <p class="eyebrow">Contacto</p>
+    <h2>Conversemos sobre la estrategia de tu organización</h2>
+    <p class="sub">Cuéntame en qué etapa se encuentra tu equipo y qué necesita resolver.</p>
+    <div class="cta-row">
+      <a href="mailto:correo@ejemplo.com" class="btn btn-ghost">correo@ejemplo.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Marlene Silva</span>
+    <span><a href="#sobre-mi">Sobre mí</a> · <a href="#servicios">Servicios</a> · <a href="#contacto">Contacto</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
